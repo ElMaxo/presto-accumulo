@@ -35,7 +35,6 @@ import org.apache.hadoop.util.ToolRunner;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static com.facebook.presto.accumulo.conf.AccumuloConfig.CARDINALITY_CACHE_EXPIRE_DURATION;
@@ -61,10 +60,9 @@ public class Main
      * List of all tasks
      */
     private static List<Task> tasks = ImmutableList.of(
+            new IndexMigration(),
             new PaginationTask(),
-            new QueryMetrics(),
-            new RewriteIndex(),
-            new TimestampCheckTask());
+            new QueryMetrics());
 
     private static final Option HELP = OptionBuilder.withDescription("Print this help message").withLongOpt("help").create();
     private static final Option CONFIG = OptionBuilder.withDescription("accumulo.properties file").withLongOpt("config").hasArg().create('c');
